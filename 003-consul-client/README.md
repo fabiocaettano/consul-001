@@ -1,118 +1,141 @@
+# Consul 
 
-## Docker
+[1. Instalação](#1-instalação)
+    - [1.1 Máquina Virtual](#11-máquina-virtual)
+    - [1.2 Configuração Git](#12-configuração-git)
+    - [1.3 Docker](#13-docker)
+    - [1.4 Docker-Compose](#14-docker-compose)
+
+## 1 Instalação 
+
+### 1.1 Máquina Virtual
+
+### 1.2 Configuração Git
+
+Suas credenciais na máquina virtual:
+
+```
+$ git config --global user.email ""
+$ git config --global user.name ""
+```
+
+Clonar o Projeto:
+
+```
+$ git clone https://github.com/fabiocaettano/consul-001.git
+```
+
+### 1.3 Docker
+
+Instalar:
+
+```
+$ curl -fsSL https://get.docker.com | bash
+```
+
+Checar:
+
+```
+$ systemctl status docker
+```
 
 
+### 1.4 Docker-Compose
 
-## Docker-Compose
+Orientaões para [Instalação do Docker-Compose](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt).
 
-[Instalação](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt)
+Realizar o download e extrair:
 
-sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+``` sh
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
 
+Tornar executável:
+
+``` sh
 sudo chmod +x /usr/local/bin/docker-compose
+```
 
+Checar a versão:
+
+``` sh
 docker-compose --version
+``` 
 
-## Consul
+
+## 2 Consul
+
+Executar o manifesto:
 
 ```
-docker-compose up -d
+$ docker-compose up -d
 ```
 
+Checar os containers:
+
 ```
-docker-compose ps
+$ docker-compose ps
 ```
 
 ## Consul Server
 
-### ConsulServer 01
+### Iniciar o Consul
+
+Acessar o containerServer01:
 
 ```
-docker exec -it consul-01 sh
+$ docker exec -it consul-01 sh
 ```
 
-```
-consul members
-```
-
-```
-mkdir /etc/consul.d
-mkdir /var/lib/consul
-```
-
-```
-ifconfig
-```
-
-```
-consul agent -server -bootstrap-expect=3 -node=consulserver01 -bind=172.22.0.4 -data-dir=/var/lib/consul -config-dir=/etc/consul.d
-```
-
-```
-consul members
-```
-
-### ConsulServer 02
-
-```
-docker exec -it consul-02 sh
-```
-
-```
-consul members
-```
+Criar os diretórios:
 
 ```
 mkdir /etc/consul.d
 mkdir /var/lib/consul
 ```
 
+Checar os members.
+
+```
+# consul members
+```
+
+Checar o IP do container:
+
 ```
 ifconfig
 ```
 
-```
-consul agent -server -bootstrap-expect=3 -node=consulserver02 -bind=172.22.0.3 -data-dir=/var/lib/consul -config-dir=/etc/consul.d
-```
+Subir o consul:
 
 ```
-consul join 172.22.0.4
+consul agent -server -bootstrap-expect=3 -node=consulserver01 -bind=172.19.0.5 -data-dir=/var/lib/consul -config-dir=/etc/consul.d
+```
+
+Agora checar os members:
+
+```
+consul members
+```
+
+Repetir o mesmo processo para os containers **consulServer02** e **consulServer03**.
+
+### Join
+
+No consulSerever02 e consultServer03 realizar o Join.
+Acessar o container através do comando docker exec.
+
+```
+# consul join 172.22.0.4
 ``` 
 
 ```
 consul members
 ```
 
-### ConsulServer 03
+### Eleição
 
-```
-docker exec -it consul-03 sh
-```
 
-```
-consul members
-```
-
-```
-mkdir /etc/consul.d
-mkdir /var/lib/consul
-```
-
-```
-ifconfig
-```
-
-```
-consul agent -server -bootstrap-expect=3 -node=consulserver03 -bind=172.22.0.2 -data-dir=/var/lib/consul -config-dir=/etc/consul.d
-```
-
-```
-consul join 172.22.0.3
-``` 
-
-```
-consul members
-```
 
 ## Consul Client
 
@@ -136,7 +159,7 @@ ifconfig
 ```
 
 ```
-consul agent -bind=172... -data-dir=/var/lib/consul config-dir=/etc/consul.d
+consul agent -bind=172.18.0.4 -data-dir=/var/lib/consul -config-dir=/etc/consul.d
 ```
 
 ```
