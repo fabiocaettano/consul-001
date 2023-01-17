@@ -12,10 +12,11 @@
 
 Configuração da máquina virtual no servilo da Digital Ocean.
 
-Imagem: Ubuntu 20.04
-CPU: 1
-Memória: 2GB
-
+<ul>
+    <li>Sistema Operacional: Ubuntu 20.04</li>
+    <li>CPU: 1</li>
+    <li>Memória: 2GB</li>
+</ul>
 
 ### 1.2 Configuração Git
 
