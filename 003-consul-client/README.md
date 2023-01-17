@@ -10,7 +10,7 @@
 
 ### 1.1 Máquina Virtual
 
-Configuração da máquina virtual no servilo da Digital Ocean.
+Configuração do Droplet no serviço da Digital Ocean.
 
 <ul>
     <li>Sistema Operacional: Ubuntu 20.04</li>
@@ -18,7 +18,15 @@ Configuração da máquina virtual no servilo da Digital Ocean.
     <li>Memória: 2GB</li>
 </ul>
 
+Acessar o droplet:
+
+``` sh
+$ ssh root@ipDroplet
+```
+
+
 ### 1.2 Configuração Git
+
 
 Suas credenciais na máquina virtual:
 
