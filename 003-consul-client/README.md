@@ -10,6 +10,13 @@
 
 ### 1.1 Máquina Virtual
 
+Configuração da máquina virtual no servilo da Digital Ocean.
+
+Imagem: Ubuntu 20.04
+CPU: 1
+Memória: 2GB
+
+
 ### 1.2 Configuração Git
 
 Suas credenciais na máquina virtual:
