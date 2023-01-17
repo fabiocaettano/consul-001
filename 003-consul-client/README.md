@@ -1,6 +1,6 @@
 # Consul 
 
-[1. Instalação](#1-instalação)
+* [1. Instalação](#1-instalação)
     - [1.1 Máquina Virtual](#11-máquina-virtual)
     - [1.2 Configuração Git](#12-configuração-git)
     - [1.3 Docker](#13-docker)
