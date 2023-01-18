@@ -27,19 +27,21 @@ $ ssh root@ipDroplet
 
 ### 1.2 Configuração Git
 
-
-Suas credenciais na máquina virtual:
-
-```
-$ git config --global user.email ""
-$ git config --global user.name ""
-```
-
 Clonar o Projeto:
 
 ```
 $ git clone https://github.com/fabiocaettano/consul-001.git
 ```
+
+
+Suas credenciais na máquina virtual:
+
+```
+$ cd consul-001
+$ git config --global user.email ""
+$ git config --global user.name ""
+```
+
 
 ### 1.3 Docker
 
