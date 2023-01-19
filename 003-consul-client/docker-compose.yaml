@@ -6,16 +6,25 @@ services:
         container_name: consulserver01
         hostname: consulserver01
         command: ['tail','-f','/dev/null']
+        networks:
+            network:
+                ipv4_address: 10.5.0.2
     consulserver02:
         image: consul:1.10
         container_name: consulserver02
         hostname: consulserver02
         command: ['tail','-f','/dev/null']
+        networks:
+            network:
+                ipv4_address: 10.5.0.3
     consulserver03:
         image: consul:1.10
         container_name: consulserver03
         hostname: consulserver03
         command: ['tail','-f','/dev/null']
+        networks:
+            network:
+                ipv4_address: 10.5.0.4
     consulclient01:
         image: consul:1.10
         container_name: consulclient01
@@ -23,6 +32,9 @@ services:
         command: ['tail','-f','/dev/null']
         volumes:
             - ./clients/consul01:/etc/consul.d
+        networks:
+            network:
+                ipv4_address: 10.5.0.5
     consulclient02:
         image: consul:1.10
         container_name: consulclient02
@@ -30,6 +42,9 @@ services:
         command: ['tail','-f','/dev/null']
         volumes:
             - ./clients/consul02:/etc/consul.d
+        networks:
+            network:
+                ipv4_address: 10.5.0.6
     consulclient03:
         image: consul:1.10
         container_name: consulclient03
@@ -37,3 +52,6 @@ services:
         command: ['tail','-f','/dev/null']
         volumes:
             - ./clients/consul03:/etc/consul.d
+        networks:
+            network:
+                ipv4_address: 10.5.0.7
