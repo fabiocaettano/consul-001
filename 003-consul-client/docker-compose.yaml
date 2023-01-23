@@ -5,6 +5,7 @@ services:
         image: consul:1.10
         container_name: consulserver01
         hostname: consulserver01
+        restart: always
         command: ['agent','-bootstrap-expect=3']
         ports:
            - "8500:8500"
@@ -17,6 +18,7 @@ services:
         image: consul:1.10
         container_name: consulserver02
         hostname: consulserver02
+        restart: always
         command: "agent -bootstrap-expect=3"
         ports:
            - "8500:8500"
@@ -29,6 +31,7 @@ services:
         image: consul:1.10
         container_name: consulserver03
         hostname: consulserver03
+        restart: always
         command: ['agent','-bootstrap-expect=3']
         ports:
            - "8500:8500"
