@@ -1,5 +1,6 @@
 {
     "node_name" : "consul-server-01",
     "server" : "true",
-    "bind_addr: : "
+    "bind_addr" : "10.5.0.2",
+    "data_dir": "/consul/data",
 }
