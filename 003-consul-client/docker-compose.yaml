@@ -5,7 +5,7 @@ services:
         image: consul:1.10
         container_name: consulserver01
         hostname: consulserver01
-        command: ['tail','-f','/dev/null']
+        command:['agent','-bootstrap-expect=3']
         networks:
             network:
                 ipv4_address: 10.5.0.2
@@ -13,7 +13,7 @@ services:
         image: consul:1.10
         container_name: consulserver02
         hostname: consulserver02
-        command: ['tail','-f','/dev/null']
+        command: "agent -bootstrap-expect=3"
         networks:
             network:
                 ipv4_address: 10.5.0.3
@@ -21,7 +21,7 @@ services:
         image: consul:1.10
         container_name: consulserver03
         hostname: consulserver03
-        command: ['tail','-f','/dev/null']
+        command: ['agent','-bootstrap-expect=3']
         networks:
             network:
                 ipv4_address: 10.5.0.4
