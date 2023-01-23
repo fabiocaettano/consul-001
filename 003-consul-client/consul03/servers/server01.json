@@ -1,1 +1,5 @@
-
+{
+    "node_name" : "consul-server-01",
+    "server" : "true",
+    "bind_addr: : "
+}
