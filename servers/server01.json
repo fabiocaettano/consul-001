@@ -3,5 +3,5 @@
     "server" : "true",
     "bind_addr" : "10.5.0.2",
     "data_dir": "/consul/data",
-    "retry_join": ["consul-server2", "consul-server3"]
+    "retry_join": ["consul-server-02", "consul-server-03"]
 }

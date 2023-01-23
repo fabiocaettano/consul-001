@@ -1,0 +1,7 @@
+{
+    "node_name" : "consul-server-02",
+    "server" : "true",
+    "bind_addr" : "10.5.0.3",
+    "data_dir": "/consul/data",
+    "retry_join": ["consul-server-01", "consul-server-03"]
+}
