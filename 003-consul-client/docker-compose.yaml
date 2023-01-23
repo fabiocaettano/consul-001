@@ -5,7 +5,11 @@ services:
         image: consul:1.10
         container_name: consulserver01
         hostname: consulserver01
-        command:['agent','-bootstrap-expect=3']
+        command: ['agent','-bootstrap-expect=3']
+        ports:
+           - "8500:8500"
+           - "8600:8600/tcp"
+           - "8600:8600/udp"
         networks:
             network:
                 ipv4_address: 10.5.0.2
@@ -14,6 +18,10 @@ services:
         container_name: consulserver02
         hostname: consulserver02
         command: "agent -bootstrap-expect=3"
+        ports:
+           - "8500:8500"
+           - "8600:8600/tcp"
+           - "8600:8600/udp"
         networks:
             network:
                 ipv4_address: 10.5.0.3
@@ -22,6 +30,10 @@ services:
         container_name: consulserver03
         hostname: consulserver03
         command: ['agent','-bootstrap-expect=3']
+        ports:
+           - "8500:8500"
+           - "8600:8600/tcp"
+           - "8600:8600/udp"
         networks:
             network:
                 ipv4_address: 10.5.0.4
