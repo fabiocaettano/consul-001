@@ -25,15 +25,9 @@ services:
         command: ['agent','-bootstrap-expect=3']
         volumes :
            - ./servers/server02:/etc/consul.d
-        ports:
-           - "8501:8501"
-           - "8601:8601/tcp"
-           - "8601:8601/udp"
         networks:
             network:
                 ipv4_address: 10.5.0.3
-        depends_on:
-            - consulserver01
 
     consulserver03:
         image: consul:1.10
@@ -43,15 +37,9 @@ services:
         command: ['agent','-bootstrap-expect=3']
         volumes :
            - ./servers/server03:/etc/consul.d
-        ports:
-           - "8502:8502"
-           - "8602:8602/tcp"
-           - "8602:8602/udp"
         networks:
             network:
                 ipv4_address: 10.5.0.4
-        depends_on:
-            - consulserver02
 
     consulclient01:
         image: consul:1.10
