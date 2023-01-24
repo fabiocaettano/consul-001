@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
     consulserver01:
@@ -16,21 +16,25 @@ services:
         networks:
             network:
                 ipv4_address: 10.5.0.2
+
     consulserver02:
         image: consul:1.10
         container_name: consulserver02
         hostname: consul-server-02
         restart: always
-        command: "agent -bootstrap-expect=3"
+        command: ['agent','-bootstrap-expect=3']
         volumes :
-           - ./servers/server01:/etc/consul.d
+           - ./servers/server02:/etc/consul.d
         ports:
-           - "8500:8500"
-           - "8600:8600/tcp"
-           - "8600:8600/udp"
+           - "8501:8501"
+           - "8601:8601/tcp"
+           - "8601:8601/udp"
         networks:
             network:
                 ipv4_address: 10.5.0.3
+        depends_on:
+            - consulserver01
+
     consulserver03:
         image: consul:1.10
         container_name: consulserver03
@@ -38,48 +42,33 @@ services:
         restart: always
         command: ['agent','-bootstrap-expect=3']
         volumes :
-           - ./servers/server01:/etc/consul.d
+           - ./servers/server03:/etc/consul.d
         ports:
-           - "8500:8500"
-           - "8600:8600/tcp"
-           - "8600:8600/udp"
+           - "8502:8502"
+           - "8602:8602/tcp"
+           - "8602:8602/udp"
         networks:
             network:
                 ipv4_address: 10.5.0.4
+        depends_on:
+            - consulserver02
+
     consulclient01:
         image: consul:1.10
         container_name: consulclient01
         hostname: consultclient01
         command: ['tail','-f','/dev/null']
         volumes:
-            - ./clients/consul01:/etc/consul.d
+            - ./clients/client01:/etc/consul.d
         networks:
             network:
-                ipv4_address: 10.5.0.5
-    consulclient02:
-        image: consul:1.10
-        container_name: consulclient02
-        hostname: consultclient02
-        command: ['tail','-f','/dev/null']
-        volumes:
-            - ./clients/consul02:/etc/consul.d
-        networks:
-            network:
-                ipv4_address: 10.5.0.6
-    consulclient03:
-        image: consul:1.10
-        container_name: consulclient03
-        hostname: consultclient03
-        command: ['tail','-f','/dev/null']
-        volumes:
-            - ./clients/consul03:/etc/consul.d
-        networks:
-            network:
-                ipv4_address: 10.5.0.7
+                ipv4_address: 10.5.0.5    
+        depends_on:
+            - consulserver01
+
 networks:
   network:
     driver: bridge
     ipam:
-      config:
-        - subnet: 10.5.0.0/16
-          gateway: 10.5.0.1
+        config:
+            - subnet: 10.5.0.0/16
