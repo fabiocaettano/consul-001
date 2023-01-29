@@ -1,5 +1,0 @@
-{
-    "node_name" : "consul-client-01",
-    "data_dir" : "/consul/data",
-    "retry_join" : ["10.5.0.2"]
-}
